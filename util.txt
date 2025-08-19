@@ -1,0 +1,1 @@
+iniciar aplicação ng serve --o (flag --o utilizada para abrir no navegador a apicação ao executar)
