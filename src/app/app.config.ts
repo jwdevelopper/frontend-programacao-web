@@ -14,7 +14,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
-    provideHttpClient(),
+    //INICIO IMPORTAÇÕES MANUAIS
+    provideHttpClient(),// HABILITANDO CHAMADAS HTTP
     providePrimeNG({
       theme: {
         preset: Lara,
