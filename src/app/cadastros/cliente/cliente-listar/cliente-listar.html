@@ -1,1 +1,29 @@
-<p>cliente-listar works!</p>
+<p-button label="Novo" severity="help"/>
+<p-table [value]="clientes">
+    <ng-template #header>
+        <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-cliente>
+        <tr>
+           <td>{{cliente.id}}</td>
+           <td>{{cliente.nome}}</td>
+           <td>
+            <p-button
+            icon="pi pi-pen-to-square"
+            severity="info"
+            pTooltip="Editar Cliente" tooltipPosition="left"
+             />
+
+             <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            pTooltip="Excluir Cliente" tooltipPosition="right"
+             />
+           </td>
+        </tr>
+    </ng-template>
+</p-table>
