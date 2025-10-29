@@ -9,6 +9,10 @@ import { RouterLink } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
 
+
+/**
+ * Arquivo responsavel por armezar toda a regra de negocio do meu componente
+ */
 @Component({
   selector: 'app-cliente-listar',
   imports: [TableModule,
