@@ -9,7 +9,7 @@
             <label for="nome">Nome</label>
           </p-floatlabel>
         </div>
-        <div class="col-sm-12 col-md-4 mt-1">
+        <div class="col-sm-12 col-md-3 mt-1">
           <p-floatlabel variant="on">
             <p-inputmask formControlName="cpfCnpj" styleClass="input-tamanho-maximo" mask="999.999.999-99"
               unmasked="true" id="cpf" autocomplete="off" />
@@ -17,22 +17,54 @@
           </p-floatlabel>
         </div>
         <div class="col-xs-12 col-sm-12
-        col-md-6 col-lg-4 col-xl-3">
-          <p-floatlabel class="input-tamanho-maximo" variant="on">
+        col-md-6 col-lg-4 col-xl-2 mt-1">
+          <p-floatlabel variant="on">
             <p-select [(ngModel)]="estado" [ngModelOptions]="{standalone:true}" inputId="estado" [options]="estados"
-              optionLabel="nome" class="w-full" />
+              optionLabel="nome" class="input-tamanho-maximo" />
             <label for="estado">Estado</label>
           </p-floatlabel>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6
-        col-lg-4 col-xl-3">
+        col-lg-4 col-xl-3 mt-1">
           <p-floatlabel variant="on">
-            <p-autocomplete formControlName="cidade"
-            [suggestions]="cidades"
-            (completeMethod)="carregarCidadesPorEstado($event)"
-              inputId="cidade"
-              optionLabel="nome" />
+            <p-autocomplete formControlName="cidade" [suggestions]="cidades"
+              (completeMethod)="carregarCidadesPorEstado($event)" inputId="cidade" optionLabel="nome" fluid />
             <label for="cidade">Cidade</label>
+          </p-floatlabel>
+          <div *ngIf="formularioCliente.get('cidade')?.touched && formularioCliente.get('cidade')?.invalid">
+            <small class="text-danger">Cidade é obrigatória.</small>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-xs-12 col-sm-12
+        col-md-6 col-lg-3 col-xl-3 mt-1">
+          <p-floatlabel variant="on">
+            <input class="w-100" formControlName="bairro" pInputText id="bairro" autocomplete="off" />
+            <label for="bairro">Bairro</label>
+          </p-floatlabel>
+          <div *ngIf="formularioCliente.get('bairro')?.touched && formularioCliente.get('bairro')?.invalid">
+            <small class="text-danger">Bairro é obrigatório.</small>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12
+        col-md-6 col-lg-3 col-xl-3 mt-1">
+          <p-floatlabel variant="on">
+            <input class="w-100" formControlName="complemento" pInputText id="complemento" autocomplete="off"
+            placeholder="Insira o complemento (Casa, Apto, zona Rural)" />
+            <label for="complemento">
+              Complemento
+              <i class="fa-solid fa-info icone-ajuda"
+              positionLeft
+              pTooltip="Informe por ex. Apto, Casa, Zona Rural"></i>
+            </label>
+          </p-floatlabel>
+        </div>
+        <div class="col-sm-12 col-md-3 mt-1">
+          <p-floatlabel variant="on">
+            <p-inputmask formControlName="cep" styleClass="input-tamanho-maximo" mask="99.999-999"
+              unmasked="true" id="cep" autocomplete="off" />
+            <label for="cep">CEP</label>
           </p-floatlabel>
         </div>
       </div>

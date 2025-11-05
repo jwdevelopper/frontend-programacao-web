@@ -13,6 +13,8 @@ import { EstadoService } from '../../estado/estado.service';
 import { SelectModule } from 'primeng/select';
 import { CidadeService } from '../../cidade/cidade.service';
 import { AutoComplete, AutoCompleteModule } from 'primeng/autocomplete';
+import { NgIf } from '@angular/common';
+import { Tooltip } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-cliente-cadastrar',
@@ -27,7 +29,9 @@ import { AutoComplete, AutoCompleteModule } from 'primeng/autocomplete';
     RouterLink,
     SelectModule,
     FormsModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    NgIf,
+    Tooltip
 ],
   templateUrl: './cliente-cadastrar.html',
   styleUrl: './cliente-cadastrar.scss'
@@ -65,7 +69,15 @@ export class ClienteCadastrar implements OnInit{
       nome: [null,Validators.compose([Validators.required,
         Validators.maxLength(60), Validators.minLength(2)])],
         cpfCnpj:[null, Validators.required],
-        cidade: [null]
+        cidade: [null, Validators.required],
+        bairro: [null, Validators.compose([
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(60)
+        ])],
+        complemento: [],
+        cep: [null, Validators.required]
+
     });
   }
 
