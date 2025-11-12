@@ -68,8 +68,13 @@ export class ClienteCadastrar implements OnInit{
       id: [],
       nome: [null,Validators.compose([Validators.required,
         Validators.maxLength(60), Validators.minLength(2)])],
+        //QUANDO UTILIZADO APENAS UMA VALIDACAO
+        //NAO E NECESSARIO USAR O COMPOSE E SIM
+        //ADICIONAR A UNICA VALIDACAO ESCOLHIDA
         cpfCnpj:[null, Validators.required],
         cidade: [null, Validators.required],
+        //VALIDATORS COMPOSE - UTILIZADO QUANDO
+        // E NECESSARIO MAIS DE UMA VALIDACAO
         bairro: [null, Validators.compose([
           Validators.required,
           Validators.minLength(2),
@@ -81,6 +86,11 @@ export class ClienteCadastrar implements OnInit{
     });
   }
 
+  //METODO RESPONSAVEL POR SALVAR OU ATUALIZAR
+  //UM CLIENTE E VALIDADO SE O FORMULARIO E VALIDO
+  //E SE EXISTE UM ID, CASO EXISTA SERA FEITO A
+  //ATUALIZACAO DO CLIENTE, CASO CONTRARIO
+  //SERA INSERIDO UM NOVO CLIENTE
   salvarCliente() {
     if(this.formularioCliente.invalid){
       console.log('formulario invalido');
@@ -106,12 +116,17 @@ export class ClienteCadastrar implements OnInit{
   }
 
   adicionarNovoCliente(){
-    this.clienteService.salvarCliente(this.formularioCliente.value)
+    //CHAMADA AO SERVICE PARA SALVAR O CLIENTE
+    this.clienteService
+    .salvarCliente(this.formularioCliente.value)
+    //INSCRICAO DA CHAMADA ASINCRONA PARA TRATAR O RETORNO
     .subscribe({
+      //CASO DE SUCESSO O BLOCO NEXT SERA EXECUTADO
       next: (_) => {
         this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Cliente Salvo com sucesso!' });
         this.route.navigateByUrl('/clientes/listar');
       },
+      //CASO DE ERRO O BLOCO ERROR SERA EXECUTADO
       error: (erro) => {
         this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao salvar cliente!' });
       }

@@ -43,7 +43,13 @@
             <input class="w-100" formControlName="bairro" pInputText id="bairro" autocomplete="off" />
             <label for="bairro">Bairro</label>
           </p-floatlabel>
-          <div *ngIf="formularioCliente.get('bairro')?.touched && formularioCliente.get('bairro')?.invalid">
+          <!--VALIDACAO PARA EXIBICAO DA MENSAGEM
+          ONDE CASO O CAMPO JA TENHA TIDO
+          ALGUMA INTERACAO (CLICADO POR EXEMPLO)
+          E UMA OU TODAS AS VALIDACOES DEFINIDAS
+          FOREM VERDADEIRAS A MENSAGEM SERA EXIBIDA-->
+          <div *ngIf="formularioCliente.get('bairro')?.touched
+          && formularioCliente.get('bairro')?.invalid">
             <small class="text-danger">Bairro é obrigatório.</small>
           </div>
         </div>
@@ -62,7 +68,9 @@
         </div>
         <div class="col-sm-12 col-md-3 mt-1">
           <p-floatlabel variant="on">
-            <p-inputmask formControlName="cep" styleClass="input-tamanho-maximo" mask="99.999-999"
+            <p-inputmask formControlName="cep"
+            styleClass="input-tamanho-maximo"
+            mask="99.999-999"
               unmasked="true" id="cep" autocomplete="off" />
             <label for="cep">CEP</label>
           </p-floatlabel>
